@@ -57,6 +57,8 @@
           <p id="formDescription">Que bom ter você por aqui. Entre com seus dados.</p>
         </div>
 
+        <p class="demo-notice" role="note">Modo demonstração: contas e tarefas ficam somente neste navegador. Não use senhas reais; esta versão não substitui uma autenticação com servidor.</p>
+
         <form id="loginForm">
           <div class="form-field" id="nameField" hidden>
             <label for="name">Nome</label>
@@ -82,11 +84,10 @@
 
           <div class="password-label">
             <label for="password">Senha</label>
-            <a class="text-link" id="forgotLink" href="#forgot">Esqueceu a senha?</a>
           </div>
           <div class="input-wrap">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></svg>
-            <input id="password" name="password" type="password" placeholder="Digite sua senha" autocomplete="current-password" required>
+            <input id="password" name="password" type="password" placeholder="Digite sua senha" autocomplete="current-password" maxlength="128" required>
             <button class="password-toggle" id="passwordToggle" type="button" aria-label="Mostrar senha" title="Mostrar senha">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
             </button>
@@ -96,7 +97,7 @@
             <label for="confirmPassword">Confirme sua senha</label>
             <div class="input-wrap">
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-              <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Digite a senha novamente" autocomplete="new-password">
+              <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Digite a senha novamente" autocomplete="new-password" maxlength="128">
             </div>
           </div>
 
@@ -133,7 +134,7 @@
       </div>
     </header>
     <p class="storage-status" id="storageStatus" role="status" aria-live="polite"></p>
-    <div class="board" id="board"></div>
+    <div class="board" id="board" role="region" aria-label="Quadro de tarefas"></div>
     <dialog id="taskModal">
       <form id="taskForm">
         <h2>Nova tarefa</h2>

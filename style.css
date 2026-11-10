@@ -106,6 +106,7 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .welcome-back { color: var(--accent); font-size: 9px; letter-spacing: 1.7px; }
 .form-heading h2 { margin: 13px 0 7px; font: 700 29px "Manrope", sans-serif; letter-spacing: -1.1px; }
 .form-heading p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.demo-notice { margin: 0 0 20px; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px; background: var(--page); color: var(--muted); font-size: 11px; line-height: 1.55; }
 
 form { display: flex; flex-direction: column; }
 form > label, .form-field > label, .password-label label { margin-bottom: 9px; font-size: 12px; font-weight: 700; }

@@ -62,12 +62,12 @@ function setMode(nextMode) {
   document.getElementById('formDescription').textContent = signingUp
     ? 'Preencha seus dados para fazer parte da Aster.'
     : 'Que bom ter você por aqui. Entre com seus dados.';
-  document.getElementById('submitButton').innerHTML = signingUp
-    ? 'Criar conta <span aria-hidden="true">→</span>'
-    : 'Entrar <span aria-hidden="true">→</span>';
-  document.getElementById('modePrompt').innerHTML = signingUp
-    ? 'Já tem uma conta? <a class="text-link" id="modeLink" href="#login">Entrar</a>'
-    : 'Ainda não tem uma conta? <a class="text-link" id="modeLink" href="#signup">Criar conta</a>';
+  document.getElementById('submitButton').firstChild.textContent = signingUp ? 'Criar conta ' : 'Entrar ';
+  const modePrompt = document.getElementById('modePrompt');
+  const modeLink = document.getElementById('modeLink');
+  modePrompt.firstChild.textContent = signingUp ? 'Já tem uma conta? ' : 'Ainda não tem uma conta? ';
+  modeLink.href = signingUp ? '#login' : '#signup';
+  modeLink.textContent = signingUp ? 'Entrar' : 'Criar conta';
   nameField.hidden = !signingUp;
   nameInput.required = signingUp;
   usernameField.hidden = !signingUp;
@@ -82,7 +82,6 @@ function setMode(nextMode) {
   password.minLength = signingUp ? 8 : 0;
   password.autocomplete = signingUp ? 'new-password' : 'current-password';
   document.getElementById('rememberOption').hidden = signingUp;
-  document.getElementById('forgotLink').hidden = signingUp;
   passwordToggle.setAttribute('aria-label', 'Mostrar senha');
   passwordToggle.title = 'Mostrar senha';
   password.type = 'password';
@@ -250,6 +249,7 @@ loginForm.addEventListener('submit', async event => {
         passwordHash
       });
       localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(accounts));
+      history.replaceState(null, '', '#login');
       setMode('login');
       document.getElementById('email').value = identifier;
       document.getElementById('password').focus();
@@ -355,12 +355,12 @@ function renderTasks() {
     const items = tasks.filter(task => task.status === column.id);
     const cards = items.map(task => {
       const previous = columnIndex > 0
-        ? `<button class="icon" data-move="${task.id}" data-dir="-1" aria-label="Mover para a esquerda">←</button>` : '';
+        ? `<button class="icon" data-move="${escapeHTML(task.id)}" data-dir="-1" aria-label="Mover para a esquerda">←</button>` : '';
       const next = columnIndex < COLUMNS.length - 1
-        ? `<button class="icon" data-move="${task.id}" data-dir="1" aria-label="Mover para a direita">→</button>` : '';
-      return `<article class="card" draggable="true" data-id="${task.id}">
+        ? `<button class="icon" data-move="${escapeHTML(task.id)}" data-dir="1" aria-label="Mover para a direita">→</button>` : '';
+      return `<article class="card" draggable="true" data-id="${escapeHTML(task.id)}">
         <div class="card-top"><h3>${escapeHTML(task.title)}</h3>
-          <button class="icon" data-del="${task.id}" aria-label="Excluir tarefa" title="Excluir">✕</button></div>
+          <button class="icon" data-del="${escapeHTML(task.id)}" aria-label="Excluir tarefa" title="Excluir">✕</button></div>
         ${task.desc ? `<p>${escapeHTML(task.desc)}</p>` : ''}
         <div class="moves">${previous}${next}</div>
       </article>`;
