@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="Asper: organize seu trabalho com clareza e foco.">
+  <title>Asper</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Asper — página inicial"><span class="brand-mark" aria-hidden="true">A</span>Asper</a>
+    <nav class="header-nav" aria-label="Navegação principal">
+      <a class="button button-outline button-small" href="login.html">Entrar</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div class="hero-content">
+      <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> SEU TRABALHO, EM FLUXO</p>
+      <h1>Clareza para<br>fazer acontecer<span class="text-accent">.</span></h1>
+      <p class="hero-copy">Organize suas ideias, acompanhe cada etapa e avance no que realmente importa. Tudo em um quadro simples, feito para manter o foco.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="login.html">Entrar <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="login.html#criar-conta">Criar uma conta</a>
+      </div>
+      <p class="hero-note">Um espaço simples para dar forma às suas ideias.</p>
+    </div>
+    <div class="preview-card" aria-label="Prévia de um quadro Asper">
+      <div class="preview-top">
+        <div><p class="preview-label">SEU ESPAÇO</p><h2>Meu quadro</h2></div>
+        <span class="preview-dots" aria-hidden="true">•••</span>
+      </div>
+      <div class="preview-columns">
+        <div class="preview-column">
+          <div class="preview-column-title"><span class="status-dot status-todo"></span>A Fazer <span class="preview-count">2</span></div>
+          <div class="preview-task"><span class="task-indicator indicator-red"></span><span>Definir prioridades</span><span class="task-check" aria-hidden="true">○</span></div>
+          <div class="preview-task"><span class="task-indicator indicator-gray"></span><span>Revisar o planejamento</span><span class="task-check" aria-hidden="true">○</span></div>
+        </div>
+        <div class="preview-column">
+          <div class="preview-column-title"><span class="status-dot status-progress"></span>Em Andamento <span class="preview-count">1</span></div>
+          <div class="preview-task"><span class="task-indicator indicator-orange"></span><span>Preparar apresentação</span><span class="task-check" aria-hidden="true">◒</span></div>
+        </div>
+        <div class="preview-column">
+          <div class="preview-column-title"><span class="status-dot status-done"></span>Concluído <span class="preview-count">1</span></div>
+          <div class="preview-task"><span class="task-indicator indicator-green"></span><span>Organizar as ideias</span><span class="task-check" aria-hidden="true">✓</span></div>
+        </div>
+      </div>
+      <div class="preview-footer"><span class="preview-avatar">A</span><span>Seu progresso, sempre à vista.</span></div>
+    </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+  </main>
+  <footer class="site-footer"><span>© Asper</span><span>Menos ruído. Mais progresso.</span></footer>
+  <script src="js/auth.js" defer></script>
+</body>
+</html>
