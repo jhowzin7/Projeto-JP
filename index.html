@@ -1,156 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f7fb">
-  <title>Entrar | Aster</title>
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="Asper: organize seu trabalho com clareza e foco.">
+  <title>Asper</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <main class="login-layout">
-    <section class="welcome-panel" aria-label="Apresentação">
-      <a class="brand brand-light" href="index.html" aria-label="Aster, página inicial">
-        <span class="brand-mark" aria-hidden="true">a</span>
-        <span>aster</span>
-      </a>
+<body data-page="home">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Asper — página inicial"><span class="brand-mark" aria-hidden="true">A</span>Asper</a>
+    <nav class="header-nav" aria-label="Navegação principal">
+      <a class="button button-outline button-small" href="login.html">Entrar</a>
+    </nav>
+  </header>
 
-      <div class="welcome-copy">
-        <span class="eyebrow"><span class="eyebrow-dot"></span> SEU ESPAÇO, DO SEU JEITO</span>
-        <h1>Boas ideias merecem um <span>lugar especial.</span></h1>
-        <p>Entre para continuar de onde parou e transformar seus planos em realidade.</p>
+  <main class="hero">
+    <div class="hero-content">
+      <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> SEU TRABALHO, EM FLUXO</p>
+      <h1>Clareza para<br>fazer acontecer<span class="text-accent">.</span></h1>
+      <p class="hero-copy">Organize suas ideias, acompanhe cada etapa e avance no que realmente importa. Tudo em um quadro simples, feito para manter o foco.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="login.html">Entrar <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="login.html#criar-conta">Criar uma conta</a>
       </div>
-
-      <div class="quote-card">
-        <div class="quote-stars" aria-label="5 de 5 estrelas">★★★★★</div>
-        <blockquote>“Finalmente encontrei um espaço que deixa tudo mais simples — e mais bonito.”</blockquote>
-        <div class="quote-person">
-          <div class="avatar" aria-hidden="true">ML</div>
-          <div><strong>Marina Lopes</strong><span>Designer e criadora</span></div>
+      <p class="hero-note">Um espaço simples para dar forma às suas ideias.</p>
+    </div>
+    <div class="preview-card" aria-label="Prévia de um quadro Asper">
+      <div class="preview-top">
+        <div><p class="preview-label">SEU ESPAÇO</p><h2>Meu quadro</h2></div>
+        <span class="preview-dots" aria-hidden="true">•••</span>
+      </div>
+      <div class="preview-columns">
+        <div class="preview-column">
+          <div class="preview-column-title"><span class="status-dot status-todo"></span>A Fazer <span class="preview-count">2</span></div>
+          <div class="preview-task"><span class="task-indicator indicator-red"></span><span>Definir prioridades</span><span class="task-check" aria-hidden="true">○</span></div>
+          <div class="preview-task"><span class="task-indicator indicator-gray"></span><span>Revisar o planejamento</span><span class="task-check" aria-hidden="true">○</span></div>
+        </div>
+        <div class="preview-column">
+          <div class="preview-column-title"><span class="status-dot status-progress"></span>Em Andamento <span class="preview-count">1</span></div>
+          <div class="preview-task"><span class="task-indicator indicator-orange"></span><span>Preparar apresentação</span><span class="task-check" aria-hidden="true">◒</span></div>
+        </div>
+        <div class="preview-column">
+          <div class="preview-column-title"><span class="status-dot status-done"></span>Concluído <span class="preview-count">1</span></div>
+          <div class="preview-task"><span class="task-indicator indicator-green"></span><span>Organizar as ideias</span><span class="task-check" aria-hidden="true">✓</span></div>
         </div>
       </div>
-
-      <span class="panel-decoration decoration-one" aria-hidden="true"></span>
-      <span class="panel-decoration decoration-two" aria-hidden="true"></span>
-    </section>
-
-    <section class="form-panel" aria-labelledby="login-title">
-      <div class="panel-top">
-        <a class="brand brand-dark" href="index.html" aria-label="Aster, página inicial">
-          <span class="brand-mark" aria-hidden="true">a</span>
-          <span>aster</span>
-        </a>
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ativar tema escuro" title="Ativar tema escuro">
-          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"/></svg>
-          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
-          <span class="theme-label">Tema escuro</span>
-        </button>
-      </div>
-
-      <div class="login-content">
-        <div class="form-heading">
-          <span class="welcome-back" id="formEyebrow">BEM-VINDO DE VOLTA</span>
-          <h2 id="login-title">Acesse sua conta</h2>
-          <p id="formDescription">Que bom ter você por aqui. Entre com seus dados.</p>
-        </div>
-
-        <p class="demo-notice" role="note">Modo demonstração: contas e tarefas ficam somente neste navegador. Não use senhas reais; esta versão não substitui uma autenticação com servidor.</p>
-
-        <form id="loginForm">
-          <div class="form-field" id="nameField" hidden>
-            <label for="name">Nome</label>
-            <div class="input-wrap">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>
-              <input id="name" name="name" type="text" placeholder="Como podemos te chamar?" autocomplete="name" maxlength="80">
-            </div>
-          </div>
-
-          <div class="form-field username-field" id="usernameField" hidden>
-            <label for="username">Nome de usuário</label>
-            <div class="input-wrap">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>
-              <input id="username" name="username" type="text" placeholder="Ex.: marina.lopes" autocomplete="username" minlength="3" maxlength="30" pattern="[A-Za-z0-9._\-]{3,30}" title="Use de 3 a 30 letras, números, pontos, hífens ou sublinhados.">
-            </div>
-          </div>
-
-          <label for="email" id="identifierLabel">E-mail ou nome de usuário</label>
-          <div class="input-wrap">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
-            <input id="email" name="email" type="text" placeholder="voce@exemplo.com ou usuário" autocomplete="username" required>
-          </div>
-
-          <div class="password-label">
-            <label for="password">Senha</label>
-          </div>
-          <div class="input-wrap">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></svg>
-            <input id="password" name="password" type="password" placeholder="Digite sua senha" autocomplete="current-password" maxlength="128" required>
-            <button class="password-toggle" id="passwordToggle" type="button" aria-label="Mostrar senha" title="Mostrar senha">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
-            </button>
-          </div>
-
-          <div class="form-field confirm-field" id="confirmField" hidden>
-            <label for="confirmPassword">Confirme sua senha</label>
-            <div class="input-wrap">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-              <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Digite a senha novamente" autocomplete="new-password" maxlength="128">
-            </div>
-          </div>
-
-          <label class="remember-option" id="rememberOption"><input type="checkbox" name="remember"><span class="custom-check" aria-hidden="true"></span><span>Manter conectado</span></label>
-
-          <button class="submit-button" id="submitButton" type="submit">Entrar <span aria-hidden="true">→</span></button>
-          <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
-        </form>
-
-        <p class="signup-prompt" id="modePrompt">Ainda não tem uma conta? <a class="text-link" id="modeLink" href="#signup">Criar conta</a></p>
-      </div>
-
-      <footer class="form-footer"><span>© 2025 Aster</span><a href="#privacy">Privacidade</a><a href="#help">Ajuda</a></footer>
-    </section>
+      <div class="preview-footer"><span class="preview-avatar">A</span><span>Seu progresso, sempre à vista.</span></div>
+    </div>
+    <div class="hero-glow" aria-hidden="true"></div>
   </main>
-  <main class="dashboard" id="dashboard" hidden>
-    <header class="dashboard-header">
-      <div>
-        <a class="dashboard-brand" href="index.html" aria-label="Aster, página inicial">
-          <span class="brand-mark" aria-hidden="true">a</span>
-          <span>Aster</span>
-        </a>
-        <h1>Meu Kanban</h1>
-        <p>Organize suas ideias, <span id="dashboardName"></span>.</p>
-      </div>
-      <div class="dashboard-actions">
-        <button class="theme-toggle dashboard-theme-toggle" id="dashboardThemeToggle" type="button" aria-label="Ativar tema escuro" title="Ativar tema escuro">
-          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"/></svg>
-          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
-          <span class="theme-label">Tema escuro</span>
-        </button>
-        <button class="btn" id="addTaskBtn" type="button">+ Nova tarefa</button>
-        <button class="btn btn-logout" id="logoutBtn" type="button">Sair</button>
-      </div>
-    </header>
-    <p class="storage-status" id="storageStatus" role="status" aria-live="polite"></p>
-    <div class="board" id="board" role="region" aria-label="Quadro de tarefas"></div>
-    <dialog id="taskModal">
-      <form id="taskForm">
-        <h2>Nova tarefa</h2>
-        <label for="taskTitle">Título
-          <input id="taskTitle" maxlength="80" required placeholder="Ex.: Revisar proposta">
-        </label>
-        <label for="taskDescription">Descrição
-          <textarea id="taskDescription" rows="4" maxlength="400" placeholder="Detalhes da atividade (opcional)"></textarea>
-        </label>
-        <div class="actions">
-          <button type="button" class="btn ghost" id="cancelTask">Cancelar</button>
-          <button type="submit" class="btn">Adicionar</button>
-        </div>
-      </form>
-    </dialog>
-  </main>
-  <script src="script.js"></script>
+  <footer class="site-footer"><span>© Asper</span><span>Menos ruído. Mais progresso.</span></footer>
+  <script src="js/auth.js" defer></script>
 </body>
 </html>

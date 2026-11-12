@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Asper — Entrar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="login">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Asper — página inicial"><span class="brand-mark" aria-hidden="true">A</span>Asper</a>
+    <a class="text-link header-back" href="index.html">← Página inicial</a>
+  </header>
+  <main class="auth-main">
+    <section class="auth-card" aria-labelledby="auth-title">
+      <div class="auth-heading">
+        <p class="eyebrow">BOM TER VOCÊ DE VOLTA</p>
+        <h1 id="auth-title"><span id="auth-title-text">Entre no Asper</span><span class="text-accent">.</span></h1>
+        <p id="auth-description">Acesse seu quadro e continue de onde parou.</p>
+      </div>
+      <div class="auth-tabs" role="tablist" aria-label="Acesso à conta">
+        <button class="auth-tab is-active" id="login-tab" type="button" role="tab" aria-selected="true" aria-controls="login-panel">Entrar</button>
+        <button class="auth-tab" id="register-tab" type="button" role="tab" aria-selected="false" aria-controls="register-panel">Criar conta</button>
+      </div>
+      <p class="form-message" id="auth-message" role="status" aria-live="polite"></p>
+      <section id="login-panel" role="tabpanel" aria-labelledby="login-tab">
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="login-identity">E-mail ou nome de usuário</label>
+            <input id="login-identity" name="identity" type="text" autocomplete="username" required aria-describedby="login-identity-error">
+            <p class="field-error" id="login-identity-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="login-password">Senha</label>
+            <div class="password-wrap">
+              <input id="login-password" name="password" type="password" autocomplete="current-password" required aria-describedby="login-password-error">
+              <button class="password-toggle" type="button" aria-label="Mostrar senha" aria-pressed="false" data-password-toggle="login-password">Mostrar</button>
+            </div>
+            <p class="field-error" id="login-password-error" aria-live="polite"></p>
+          </div>
+          <button class="button button-primary button-full" type="submit">Entrar <span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+      <section id="register-panel" role="tabpanel" aria-labelledby="register-tab" hidden>
+        <form id="register-form" novalidate>
+          <div class="field">
+            <label for="register-name">Nome de usuário</label>
+            <input id="register-name" name="name" type="text" autocomplete="nickname" minlength="2" maxlength="40" required aria-describedby="register-name-error">
+            <p class="field-error" id="register-name-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="register-email">E-mail</label>
+            <input id="register-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="register-email-error">
+            <p class="field-error" id="register-email-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="register-password">Senha <span class="label-hint">(mínimo de 8 caracteres)</span></label>
+            <div class="password-wrap">
+              <input id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" required aria-describedby="register-password-error">
+              <button class="password-toggle" type="button" aria-label="Mostrar senha" aria-pressed="false" data-password-toggle="register-password">Mostrar</button>
+            </div>
+            <p class="field-error" id="register-password-error" aria-live="polite"></p>
+          </div>
+          <button class="button button-primary button-full" type="submit">Criar minha conta <span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+      <a class="back-link" href="index.html">← Voltar para a página inicial</a>
+      <p class="auth-security">Suas senhas são armazenadas como hashes no seu navegador.</p>
+    </section>
+  </main>
+  <script src="js/auth.js" defer></script>
+</body>
+</html>
