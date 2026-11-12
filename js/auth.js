@@ -312,13 +312,13 @@
       initializeLogin();
       return;
     }
-    if (page === "kanban") {
+    if (page === "kanban" || page === "task-detail") {
       const user = getCurrentUser();
       if (!user) {
         window.location.replace("login.html");
         return;
       }
-      initializeUserMenu(user);
+      if (page === "kanban") initializeUserMenu(user);
     }
   });
 

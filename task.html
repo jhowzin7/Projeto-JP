@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Asper — Detalhes da tarefa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="task-detail">
+  <header class="app-header">
+    <a class="brand" href="kanban.html" aria-label="Asper — voltar ao quadro"><span class="brand-mark" aria-hidden="true">A</span>Asper</a>
+    <a class="text-link" href="kanban.html">← Voltar para o quadro</a>
+  </header>
+  <main class="task-detail-main">
+    <article class="task-detail-card">
+      <p class="eyebrow">DETALHES DA TAREFA</p>
+      <h1 id="task-page-title">Carregando tarefa…</h1>
+      <p class="task-detail-description" id="task-page-desc"></p>
+      <p class="task-detail-error" id="task-page-error" role="status" aria-live="polite"></p>
+      <dl class="task-detail-meta">
+        <div><dt>Etapa</dt><dd id="task-page-status">—</dd></div>
+        <div><dt>Prioridade</dt><dd id="task-page-priority">—</dd></div>
+        <div><dt>Prazo</dt><dd id="task-page-due">—</dd></div>
+        <div><dt>Responsável</dt><dd id="task-page-assignee">—</dd></div>
+      </dl>
+      <a class="button button-outline" href="kanban.html">Voltar para o quadro</a>
+    </article>
+  </main>
+  <script src="js/auth.js" defer></script>
+  <script src="js/task-detail.js" defer></script>
+</body>
+</html>

@@ -87,6 +87,18 @@
         <label for="task-description">Descrição <span class="label-hint">(opcional)</span></label>
         <textarea id="task-description" name="description" rows="4" maxlength="500"></textarea>
       </div>
+      <div class="field">
+        <label for="task-priority">Prioridade</label>
+        <select id="task-priority" name="priority">
+          <option value="low">Baixa</option>
+          <option value="normal" selected>Normal</option>
+          <option value="high">Alta</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="task-due-date">Prazo <span class="label-hint">(opcional)</span></label>
+        <input id="task-due-date" name="dueDate" type="date">
+      </div>
       <div class="dialog-actions">
         <button class="button button-outline" id="cancel-task" type="button">Cancelar</button>
         <button class="button button-primary" type="submit">Salvar tarefa</button>

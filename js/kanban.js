@@ -12,6 +12,8 @@
   const form = document.getElementById("task-form");
   const titleInput = document.getElementById("task-title");
   const descriptionInput = document.getElementById("task-description");
+  const priorityInput = document.getElementById("task-priority");
+  const dueDateInput = document.getElementById("task-due-date");
   const toastRegion = document.getElementById("toast-region");
   let draggedTaskId = null;
   let tasks = loadTasks();
@@ -84,14 +86,38 @@
     card.draggable = true;
     card.dataset.taskId = task.id;
 
+    // Título transformado em link clicável para abrir a página da tarefa
     const title = document.createElement("h3");
-    title.textContent = task.title;
+    const titleLink = document.createElement("a");
+    titleLink.href = `task.html?id=${encodeURIComponent(task.id)}`;
+    titleLink.textContent = task.title;
+    titleLink.className = "text-link";
+    title.append(titleLink);
     card.append(title);
+
     if (task.description) {
       const description = document.createElement("p");
       description.textContent = task.description;
       card.append(description);
     }
+
+    const metadata = document.createElement("p");
+    metadata.className = "task-metadata";
+    const priorityValue = ["low", "normal", "high"].includes(task.priority) ? task.priority : "normal";
+    const priorityLabels = { low: "Baixa", normal: "Normal", high: "Alta" };
+    const priority = document.createElement("span");
+    priority.className = `priority-badge priority-${priorityValue}`;
+    priority.textContent = `Prioridade ${priorityLabels[priorityValue].toLocaleLowerCase("pt-BR")}`;
+    metadata.append(priority);
+    if (typeof task.dueDate === "string" && /^\d{4}-\d{2}-\d{2}$/.test(task.dueDate)) {
+      const dueDate = document.createElement("span");
+      const parsedDate = new Date(`${task.dueDate}T00:00:00Z`);
+      if (!Number.isNaN(parsedDate.getTime())) {
+        dueDate.textContent = new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium", timeZone: "UTC" }).format(parsedDate);
+        metadata.append(dueDate);
+      }
+    }
+    card.append(metadata);
 
     const footer = document.createElement("div");
     footer.className = "task-card-footer";
@@ -199,6 +225,9 @@
       id: typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
       title,
       description: descriptionInput.value.trim(),
+      priority: priorityInput.value,
+      dueDate: dueDateInput.value,
+      assignee: user.name || user.username,
       status: "todo"
     };
     if (persist([...tasks, task], "Tarefa adicionada com sucesso.")) dialog.close();
