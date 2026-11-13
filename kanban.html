@@ -3,140 +3,183 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Asper — Quadro Kanban Colaborativo</title>
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Asper — Meu quadro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    .board-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
-    .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; margin-right: 4px; }
-    .badge-alta, .badge-urgente { background: #fee2e2; color: #b91c1c; }
-    .badge-media, .badge-bug { background: #fef3c7; color: #b45309; }
-    .badge-baixa, .badge-feature { background: #dbeafe; color: #1d4ed8; }
-    .badge-sp { background: #f3e8ff; color: #6b21a8; }
-    .card-meta { font-size: 12px; color: var(--color-muted); margin-top: 8px; display: flex; justify-content: space-between; }
-    .member-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--color-border); }
-  </style>
 </head>
 <body data-page="kanban">
   <header class="app-header">
-    <a class="brand" href="kanban.html"><span class="brand-mark">A</span>Asper</a>
-    <div style="display: flex; gap: 12px; align-items: center;">
-      <span id="current-user-email" style="font-size: 13px; color: var(--color-muted);"></span>
-      <button class="button button-ghost" id="logout-button" type="button">Sair</button>
-    </div>
+    <a class="brand" href="kanban.html" aria-label="Asper — quadro Kanban">
+      <span class="brand-mark" aria-hidden="true">A</span>Asper
+    </a>
+    <nav class="app-nav" aria-label="Navegação do quadro">
+      <a class="app-home-link" href="index.html">Página inicial</a>
+      <div class="user-menu">
+        <button class="user-menu-trigger" id="user-menu-trigger" type="button" aria-expanded="false" aria-controls="user-menu-panel">
+          <span class="avatar" id="header-avatar" aria-hidden="true">A</span>
+          <span class="user-trigger-name" id="header-name">Minha conta</span>
+          <span class="chevron" aria-hidden="true">⌄</span>
+        </button>
+        <section class="user-menu-panel" id="user-menu-panel" aria-label="Perfil do usuário" hidden>
+          <p class="profile-eyebrow">SEU PERFIL</p>
+          <div class="profile-summary">
+            <span class="avatar avatar-large" id="profile-avatar" aria-hidden="true">A</span>
+            <div>
+              <strong id="profile-name">Minha conta</strong>
+              <span id="profile-email"></span>
+            </div>
+          </div>
+          <form id="profile-form" class="profile-form">
+            <label for="display-name">Nome de exibição</label>
+            <input id="display-name" name="displayName" type="text" maxlength="40" required>
+            <button class="button button-secondary button-full button-small" type="submit">Salvar nome</button>
+          </form>
+          <button class="menu-logout" type="button" data-logout>Sair da conta <span aria-hidden="true">↗</span></button>
+        </section>
+      </div>
+      <button class="button button-outline button-small logout-header" id="logout-button" type="button" data-logout>Sair</button>
+    </nav>
   </header>
 
   <main class="board-main">
-    <div class="board-controls">
-      <select id="board-selector" class="input" style="max-width: 280px;" aria-label="Selecionar quadro"></select>
-      <button class="button button-ghost" id="new-board-button" type="button">+ Novo Quadro</button>
-      <button class="button button-ghost" id="share-board-button" type="button">Compartilhar Quadro</button>
-      <span id="role-badge" class="badge badge-feature"></span>
-      <button class="button button-primary" id="add-task-button" type="button" style="margin-left: auto;">＋ Adicionar nova tarefa</button>
-    </div>
+    <section class="workspace-intro">
+      <div>
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> SEU ESPAÇO DE TRABALHO</p>
+        <h1>Planeje. Acompanhe. <span class="text-accent">Conclua.</span></h1>
+        <p>Um lugar simples para organizar o trabalho e manter o ritmo.</p>
+      </div>
+      <div class="workspace-user">
+        <span class="workspace-user-label">CONECTADO COMO</span>
+        <span id="current-user-email">Sua conta Asper</span>
+      </div>
+    </section>
 
-    <section class="board-grid" aria-label="Quadro Kanban">
-      <div class="board-column" data-status="todo">
+    <section class="board-toolbar" aria-label="Controles do quadro">
+      <div class="board-picker">
+        <label class="sr-only" for="board-selector">Selecionar quadro</label>
+        <select id="board-selector" class="input board-selector"></select>
+        <span class="board-selector-icon" aria-hidden="true">▦</span>
+      </div>
+      <div class="toolbar-actions">
+        <button class="button button-secondary" id="new-board-button" type="button"><span aria-hidden="true">＋</span> Novo quadro</button>
+        <button class="button button-secondary" id="share-board-button" type="button"><span aria-hidden="true">↗</span> Compartilhar</button>
+        <span id="role-badge" class="role-badge"></span>
+        <button class="button button-primary add-task-button" id="add-task-button" type="button"><span aria-hidden="true">＋</span> Nova tarefa</button>
+      </div>
+    </section>
+
+    <section class="kanban-board" aria-label="Quadro Kanban">
+      <section class="board-column" data-status="todo" aria-labelledby="todo-heading">
         <header class="column-header">
-          <h2>A Fazer</h2>
-          <span class="column-count" data-count="todo">0</span>
+          <div class="column-heading"><span class="status-dot status-todo" aria-hidden="true"></span><h2 id="todo-heading">A Fazer</h2></div>
+          <span class="column-count" data-count="todo" aria-label="0 tarefas">0</span>
         </header>
         <div class="task-list" data-list="todo"></div>
-      </div>
-
-      <div class="board-column" data-status="progress">
+      </section>
+      <section class="board-column" data-status="progress" aria-labelledby="progress-heading">
         <header class="column-header">
-          <h2>Em Andamento</h2>
-          <span class="column-count" data-count="progress">0</span>
+          <div class="column-heading"><span class="status-dot status-progress" aria-hidden="true"></span><h2 id="progress-heading">Em Andamento</h2></div>
+          <span class="column-count" data-count="progress" aria-label="0 tarefas">0</span>
         </header>
         <div class="task-list" data-list="progress"></div>
-      </div>
-
-      <div class="board-column" data-status="done">
+      </section>
+      <section class="board-column" data-status="done" aria-labelledby="done-heading">
         <header class="column-header">
-          <h2>Concluído</h2>
-          <span class="column-count" data-count="done">0</span>
+          <div class="column-heading"><span class="status-dot status-done" aria-hidden="true"></span><h2 id="done-heading">Concluído</h2></div>
+          <span class="column-count" data-count="done" aria-label="0 tarefas">0</span>
         </header>
         <div class="task-list" data-list="done"></div>
-      </div>
+      </section>
     </section>
   </main>
 
-  <!-- Modal Nova Tarefa -->
-  <dialog id="task-dialog" class="modal">
+  <dialog id="task-dialog" class="modal" aria-labelledby="task-dialog-title">
     <form id="task-form" class="modal-card" novalidate>
       <div class="modal-header">
-        <h2>Nova Tarefa</h2>
+        <div>
+          <p class="eyebrow">ORGANIZE SEU FLUXO</p>
+          <h2 id="task-dialog-title">Nova tarefa</h2>
+        </div>
         <button type="button" id="close-task-dialog" class="icon-button" aria-label="Fechar">×</button>
       </div>
       <div class="field">
-        <label for="task-title">Título *</label>
-        <input id="task-title" type="text" required>
-        <small id="task-title-error" class="field-error"></small>
+        <label for="task-title">Título <span class="required-mark">*</span></label>
+        <input id="task-title" name="title" type="text" maxlength="120" placeholder="O que precisa ser feito?" required>
+        <small id="task-title-error" class="field-error" aria-live="polite"></small>
       </div>
       <div class="field">
-        <label for="task-description">Descrição</label>
-        <textarea id="task-description" rows="2"></textarea>
+        <label for="task-description">Descrição <span class="label-hint">(opcional)</span></label>
+        <textarea id="task-description" name="description" rows="3" maxlength="500" placeholder="Adicione contexto ou próximos passos..."></textarea>
       </div>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+      <div class="form-grid">
         <div class="field">
           <label for="task-priority">Prioridade</label>
-          <select id="task-priority">
+          <select id="task-priority" name="priority">
             <option value="baixa">Baixa</option>
             <option value="media" selected>Média</option>
             <option value="alta">Alta</option>
           </select>
         </div>
         <div class="field">
-          <label for="task-label">Label</label>
-          <select id="task-label">
+          <label for="task-label">Categoria</label>
+          <select id="task-label" name="label">
             <option value="feature">Feature</option>
             <option value="bug">Bug</option>
             <option value="urgente">Urgente</option>
           </select>
         </div>
-      </div>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
         <div class="field">
           <label for="task-due">Prazo</label>
-          <input id="task-due" type="date">
+          <input id="task-due" name="dueDate" type="date">
         </div>
         <div class="field">
-          <label for="task-points">Story Points (Scrum)</label>
-          <input id="task-points" type="number" min="1" max="21" value="3">
+          <label for="task-points">Story points</label>
+          <input id="task-points" name="points" type="number" min="1" max="21" value="3">
         </div>
       </div>
       <div class="field">
         <label for="task-assignee">Responsável</label>
-        <select id="task-assignee"></select>
+        <select id="task-assignee" name="assignee"></select>
       </div>
       <div class="modal-actions">
-        <button type="button" id="cancel-task" class="button button-ghost">Cancelar</button>
-        <button type="submit" class="button button-primary">Criar Tarefa</button>
+        <button type="button" id="cancel-task" class="button button-outline">Cancelar</button>
+        <button type="submit" class="button button-primary">Criar tarefa <span aria-hidden="true">→</span></button>
       </div>
     </form>
   </dialog>
 
-  <!-- Modal Compartilhar Quadro -->
-  <dialog id="share-dialog" class="modal">
+  <dialog id="share-dialog" class="modal" aria-labelledby="share-dialog-title">
     <div class="modal-card">
       <div class="modal-header">
-        <h2>Compartilhar Quadro</h2>
-        <button type="button" id="close-share-dialog" class="icon-button">×</button>
+        <div>
+          <p class="eyebrow">TRABALHE EM EQUIPE</p>
+          <h2 id="share-dialog-title">Compartilhar quadro</h2>
+        </div>
+        <button type="button" id="close-share-dialog" class="icon-button" aria-label="Fechar">×</button>
       </div>
-      <form id="invite-form" style="display: flex; gap: 8px; margin-bottom: 16px;">
-        <input id="invite-email" type="email" placeholder="E-mail do usuário" required style="flex: 1;">
-        <select id="invite-role">
-          <option value="EDITOR">Editor</option>
-          <option value="VIEWER">Leitor</option>
-        </select>
-        <button type="submit" class="button button-primary">Convidar</button>
+      <form id="invite-form" class="invite-form">
+        <div class="field invite-email-field">
+          <label for="invite-email">E-mail do usuário</label>
+          <input id="invite-email" type="email" placeholder="nome@exemplo.com" required>
+        </div>
+        <div class="field invite-role-field">
+          <label for="invite-role">Acesso</label>
+          <select id="invite-role">
+            <option value="EDITOR">Editor</option>
+            <option value="VIEWER">Leitor</option>
+          </select>
+        </div>
+        <button type="submit" class="button button-primary invite-button">Convidar</button>
       </form>
-      <h3 style="font-size: 14px; margin-bottom: 8px;">Membros com acesso</h3>
-      <div id="members-list"></div>
+      <h3 class="members-heading">Pessoas com acesso</h3>
+      <div id="members-list" class="members-list"></div>
     </div>
   </dialog>
 
-  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <div id="toast-region" class="toast-region" role="status" aria-live="polite" aria-atomic="true"></div>
   <script src="js/auth.js" defer></script>
   <script src="js/kanban.js" defer></script>
 </body>
