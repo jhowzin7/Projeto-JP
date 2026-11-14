@@ -146,7 +146,7 @@
     const member = Array.isArray(board.members)
       ? board.members.find((item) => item.email === userEmail)
       : null;
-    if (!isOwner && (!member || member.papel === "VIEWER")) {
+    if (!isOwner && (!member || member.papel !== "EDITOR")) {
       return "Seu acesso a este quadro não permite criar tarefas.";
     }
 
