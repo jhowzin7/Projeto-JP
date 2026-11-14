@@ -35,6 +35,7 @@
 
   let db = loadDB();
   let currentBoardId = localStorage.getItem("asper_active_board") || db.boards[0]?.id;
+  if (currentBoardId) localStorage.setItem("asper_active_board", currentBoardId);
   let draggedTaskId = null;
 
   const boardSelector = document.getElementById("board-selector");
@@ -129,6 +130,23 @@
     card.className = "task-card";
     card.draggable = canEdit;
     card.dataset.taskId = task.id;
+    card.tabIndex = 0;
+    card.setAttribute("aria-label", `Abrir detalhes da tarefa: ${task.title}`);
+
+    const taskHref = `task.html?id=${encodeURIComponent(task.id)}`;
+    function openTaskDetails() {
+      window.location.assign(taskHref);
+    }
+
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a, button, select, input, textarea")) return;
+      openTaskDetails();
+    });
+    card.addEventListener("keydown", (event) => {
+      if (event.target !== card || (event.key !== "Enter" && event.key !== " ")) return;
+      event.preventDefault();
+      openTaskDetails();
+    });
 
     // Badges de Prioridade, Label e Story Points
     const badges = document.createElement("div");
@@ -140,12 +158,10 @@
     `;
     card.append(badges);
 
-    // Título abre a task em NOVA ABA (rota própria / URL compartilhável)
+    // O título permanece como link para abrir os detalhes na mesma aba.
     const title = document.createElement("h3");
     const link = document.createElement("a");
-    link.href = `task.html?id=${task.id}`;
-    link.target = "_blank";
-    link.rel = "noopener";
+    link.href = taskHref;
     link.textContent = task.title;
     link.className = "text-link";
     link.addEventListener("click", (e) => e.stopPropagation());
@@ -379,5 +395,6 @@
 
   // Atualiza automaticamente quando a aba da task altera algo
   window.addEventListener("storage", () => render());
+  window.addEventListener("asper:tasks-updated", () => render());
   render();
 })();
